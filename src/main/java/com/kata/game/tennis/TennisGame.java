@@ -4,7 +4,11 @@ import java.util.Arrays;
 import java.util.List;
 
 public class TennisGame {
-	public static final List<String> ALL_SCORES =  Arrays.asList("0","15","30","40");
+	private static final String WIN_THE_GAME = "win the game";
+	private static final String SCORE_SEP = ":";
+	private static final String LIGNE_SEP = "\n";
+	public static final List<String> ALL_SCORES = Arrays.asList("0", "15",
+			"30", "40");
 	private Player player1;
 	private Player player2;
 
@@ -23,35 +27,40 @@ public class TennisGame {
 		return this.player2;
 	}
 
-	public String displayCurrentScore(){
-		String winner = null;
-		if(this.player1.getScore( )>3 ){
+	public String displayCurrentScore() {
+		if (this.hasWinner()) {
 			initScore();
-			winner = this.getPlayer1().getName();
 		}
-		else if (this.player2.getScore()>3){
-			initScore();
-			winner = this.getPlayer2().getName();
-		}
+
 		StringBuilder currentScore = new StringBuilder();
 		currentScore.append(this.player1.getName());
-		currentScore.append(":");
+		currentScore.append(SCORE_SEP);
 		currentScore.append(ALL_SCORES.get(this.player1.getScore()));
-		currentScore.append("\n");
+		currentScore.append(LIGNE_SEP);
 		currentScore.append(this.player2.getName());
-		currentScore.append(":");
+		currentScore.append(SCORE_SEP);
 		currentScore.append(ALL_SCORES.get(this.player2.getScore()));
-		if (winner !=null){
-			currentScore.append("\n");
-			currentScore.append(winner);
-			currentScore.append("win the game");
+		if (this.hasWinner()) {
+			currentScore.append(LIGNE_SEP);
+			currentScore.append(this.displayGameWinner());
+			currentScore.append(WIN_THE_GAME);
 		}
 		return currentScore.toString();
+	}
+
+	private String displayGameWinner() {
+		return this.player1.getScore() > this.player2.getScore() ? 
+				this.getPlayer1().getName() : this.getPlayer2().getName();
+
+	}
+
+	private boolean hasWinner() {
+		return this.player1.getScore() > 3 || this.player2.getScore() > 3;
 	}
 
 	private void initScore() {
 		this.player1.setScore(0);
 		this.player2.setScore(0);
-		
+
 	}
 }
