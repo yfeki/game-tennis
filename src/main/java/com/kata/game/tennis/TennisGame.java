@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class TennisGame {
+	private static final String ADV = "ADV";
 	private static final String WIN_THE_GAME = " win the game";
 	private static final String DEUCE = "DEUCE";
 	private static final String SCORE_SEP = ":";
@@ -34,19 +35,38 @@ public class TennisGame {
 
 		if (this.hasWinner()) {
 			initScore();
-			StringBuilder score = new StringBuilder(this.displayScore(ALL_SCORES.get(this.player1.getScore()),ALL_SCORES.get(this.player2.getScore())));
+			StringBuilder score = new StringBuilder(this.displayScore(
+					ALL_SCORES.get(this.player1.getScore()),
+					ALL_SCORES.get(this.player2.getScore())));
 			score.append(LIGNE_SEP);
 			score.append(this.displayGameWinner());
 			score.append(WIN_THE_GAME);
 			return score.toString();
 		}
-		
+
 		else if (isDeuceActivated()) {
 			return this.displayScore(DEUCE, DEUCE);
 		}
-		
-		return this.displayScore(ALL_SCORES.get(this.player1.getScore()),ALL_SCORES.get(this.player2.getScore()));
-		
+
+		else if (this.hasAdvantageAgainstPlayer1()) {
+			return this.displayScore(ALL_SCORES.get(this.player1.getScore()),
+					ADV);
+		} else if (hasAdvantageAgainstPlayer2()) {
+			return this.displayScore(ADV,
+					ALL_SCORES.get(this.player2.getScore()));
+		}
+
+		return this.displayScore(ALL_SCORES.get(this.player1.getScore()),
+				ALL_SCORES.get(this.player2.getScore()));
+
+	}
+
+	private boolean hasAdvantageAgainstPlayer1() {
+		return this.player1.getScore() == 3 && this.player2.getScore() == 4;
+	}
+
+	private boolean hasAdvantageAgainstPlayer2() {
+		return this.player1.getScore() == 4 && this.player2.getScore() == 3;
 	}
 
 	private boolean isDeuceActivated() {
@@ -60,7 +80,8 @@ public class TennisGame {
 	}
 
 	private boolean hasWinner() {
-		return this.player1.getScore() > 3 || this.player2.getScore() > 3;
+		return (this.player1.getScore() > 3 && this.player2.getScore() < 3)
+				|| (this.player2.getScore() > 3 && this.player1.getScore() < 3);
 	}
 
 	private void initScore() {
