@@ -80,8 +80,8 @@ public class TennisGame {
 	}
 
 	private boolean hasWinner() {
-		return (this.player1.getScore() > 3 && this.player2.getScore() < 3)
-				|| (this.player2.getScore() > 3 && this.player1.getScore() < 3);
+		return (this.player1.getScore() == 4 && this.player2.getScore() < 3)
+				|| (this.player2.getScore() == 4 && this.player1.getScore() < 3);
 	}
 
 	private void initScore() {
