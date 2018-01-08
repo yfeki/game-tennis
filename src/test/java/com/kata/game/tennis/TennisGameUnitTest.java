@@ -32,7 +32,7 @@ public class TennisGameUnitTest {
 		"2,1,Player1:30\nPlayer2:15",
 		"3,1,Player1:40\nPlayer2:15",
 		"3,2,Player1:40\nPlayer2:30",
-		"3,3,Player1:40\nPlayer2:40", 
+		"3,3,Player1:DEUCE\nPlayer2:DEUCE", 
 		"3,4,Player1:0\nPlayer2:0\nPlayer2 win the game"
 	})
 	public void should_display_current_score_at_any_moment_of_the_game(
