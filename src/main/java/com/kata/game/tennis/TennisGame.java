@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class TennisGame {
-	private static final String WIN_THE_GAME = "win the game";
+	private static final String WIN_THE_GAME = " win the game";
 	private static final String SCORE_SEP = ":";
 	private static final String LIGNE_SEP = "\n";
 	public static final List<String> ALL_SCORES = Arrays.asList("0", "15",
@@ -28,7 +28,8 @@ public class TennisGame {
 	}
 
 	public String displayCurrentScore() {
-		if (this.hasWinner()) {
+		boolean hasWinner = this.hasWinner();
+		if (hasWinner) {
 			initScore();
 		}
 
@@ -40,7 +41,7 @@ public class TennisGame {
 		currentScore.append(this.player2.getName());
 		currentScore.append(SCORE_SEP);
 		currentScore.append(ALL_SCORES.get(this.player2.getScore()));
-		if (this.hasWinner()) {
+		if (hasWinner) {
 			currentScore.append(LIGNE_SEP);
 			currentScore.append(this.displayGameWinner());
 			currentScore.append(WIN_THE_GAME);
@@ -53,7 +54,6 @@ public class TennisGame {
 				this.getPlayer1().getName() : this.getPlayer2().getName();
 
 	}
-
 	private boolean hasWinner() {
 		return this.player1.getScore() > 3 || this.player2.getScore() > 3;
 	}
@@ -61,6 +61,6 @@ public class TennisGame {
 	private void initScore() {
 		this.player1.setScore(0);
 		this.player2.setScore(0);
-
 	}
+	
 }

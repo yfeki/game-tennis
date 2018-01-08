@@ -39,7 +39,7 @@ public class TennisGameUnitTest {
 			int pointsWonByPlayer1, int pointsWonByPlayer2, String expectedScore) {
 		addPointsForPlayer(tennisGame.getPlayer1(), pointsWonByPlayer1);
 		addPointsForPlayer(tennisGame.getPlayer2(), pointsWonByPlayer2);
-		assertThat(tennisGame.displayCurrentScore().equals(expectedScore));
+		assertThat(tennisGame.displayCurrentScore()).isEqualTo(expectedScore);
 
 	}
 
