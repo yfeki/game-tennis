@@ -24,6 +24,15 @@ public class TennisGame {
 	}
 
 	public String displayCurrentScore(){
+		String winner = null;
+		if(this.player1.getScore( )>3 ){
+			initScore();
+			winner = this.getPlayer1().getName();
+		}
+		else if (this.player2.getScore()>3){
+			initScore();
+			winner = this.getPlayer2().getName();
+		}
 		StringBuilder currentScore = new StringBuilder();
 		currentScore.append(this.player1.getName());
 		currentScore.append(":");
@@ -32,6 +41,17 @@ public class TennisGame {
 		currentScore.append(this.player2.getName());
 		currentScore.append(":");
 		currentScore.append(ALL_SCORES.get(this.player2.getScore()));
+		if (winner !=null){
+			currentScore.append("\n");
+			currentScore.append(winner);
+			currentScore.append("win the game");
+		}
 		return currentScore.toString();
+	}
+
+	private void initScore() {
+		this.player1.setScore(0);
+		this.player2.setScore(0);
+		
 	}
 }
