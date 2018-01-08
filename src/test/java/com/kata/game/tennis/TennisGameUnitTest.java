@@ -1,46 +1,52 @@
 package com.kata.game.tennis;
+
 import static org.assertj.core.api.Assertions.assertThat;
+
+
+import junitparams.Parameters;
+import junitparams.JUnitParamsRunner;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 
+
+@RunWith(JUnitParamsRunner.class)
 public class TennisGameUnitTest {
 
-	
-	private TennisGame tennisGame; 
-	
+	private TennisGame tennisGame;
+
 	@Before
-	public void setUp(){
+	public void setUp() {
 		Player player1 = new Player("Player1");
 		Player player2 = new Player("Player2");
-		tennisGame= new TennisGame(player1,player2);
-		
+		tennisGame = new TennisGame(player1, player2);
+
 	}
-	
+
 	@Test
-	public void should_display_fifteen_zero_when_player1_wins(){
-		String score = "Player1:15 | Player2:0";
-		tennisGame.getPlayer1().winPoint();
-		assertThat(tennisGame.displayCurrentScore().equals(score));
+	@Parameters({
+		"0,0,Player1:0\nPlayer2:0",
+		"1,0,Player1:15\nPlayer2:0",
+		"2,0,Player1:30\nPlayer2:0",
+		"2,1,Player1:30\nPlayer2:15",
+		"3,1,Player1:40\nPlayer2:15",
+		"3,2,Player1:40\nPlayer2:30",
+		"3,3,Player1:40\nPlayer2:40"
 		
+	})
+	public void should_display_current_score_at_any_moment_of_the_game(
+			int pointsWonByPlayer1, int pointsWonByPlayer2, String expectedScore) {
+		addPointsForPlayer(tennisGame.getPlayer1(), pointsWonByPlayer1);
+		addPointsForPlayer(tennisGame.getPlayer2(), pointsWonByPlayer2);
+		assertThat(tennisGame.displayCurrentScore().equals(expectedScore));
+
 	}
-	
-	@Test
-	public void should_display_Thirty_zero_when_player1_wins_two_points(){
-		String score = "Player1:30 | Player2:0";
-		tennisGame.getPlayer1().winPoint();
-		tennisGame.getPlayer1().winPoint();
-		assertThat(tennisGame.displayCurrentScore().equals(score));
-		
-	}
-	
-	@Test
-	public void should_display_Thirty_fifteen_when_player1_won_two_points_and_palyer2_wins_one_point(){
-		String score = "Player1:30 | Player2:15";
-		tennisGame.getPlayer1().winPoint();
-		tennisGame.getPlayer1().winPoint();
-		tennisGame.getPlayer2().winPoint();
-		assertThat(tennisGame.displayCurrentScore().equals(score));
-		
+
+	private void addPointsForPlayer(Player player, int pointsWonByPlayer) {
+		for (int i = 0; i < pointsWonByPlayer; i++) {
+			player.winPoint();
+		}
+
 	}
 }

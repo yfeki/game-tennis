@@ -28,7 +28,7 @@ public class TennisGame {
 		currentScore.append(this.player1.getName());
 		currentScore.append(":");
 		currentScore.append(ALL_SCORES.get(this.player1.getScore()));
-		currentScore.append(" | ");
+		currentScore.append("\n");
 		currentScore.append(this.player2.getName());
 		currentScore.append(":");
 		currentScore.append(ALL_SCORES.get(this.player2.getScore()));
