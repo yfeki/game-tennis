@@ -43,6 +43,15 @@ public class TennisGameUnitTest {
 		assertThat(tennisGame.displayCurrentScore()).isEqualTo(expectedScore);
 
 	}
+	
+	@Test
+	public void should_display_deuce_when_player1_had_advantage_and_lose_point(){
+		addPointsForPlayer(tennisGame.getPlayer1(), 4);
+		addPointsForPlayer(tennisGame.getPlayer2(), 3);
+		tennisGame.getPlayer1().losePoint();
+		String expectedScore="Player1:DEUCE\nPlayer2:DEUCE";
+		assertThat(tennisGame.displayCurrentScore()).isEqualTo(expectedScore);
+	}
 
 	private void addPointsForPlayer(Player player, int pointsWonByPlayer) {
 		for (int i = 0; i < pointsWonByPlayer; i++) {

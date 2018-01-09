@@ -27,4 +27,9 @@ public class Player {
 		
 	}
 
+	public void losePoint() {
+		this.score--;
+		
+	}
+
 }
