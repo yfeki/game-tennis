@@ -32,7 +32,7 @@ public class TennisGameUnitTest {
 			int pointsWonByPlayer1, int pointsWonByPlayer2, String expectedScore) {
 		tennisGame.getPlayer1().setGameScore(pointsWonByPlayer1);
 		tennisGame.getPlayer2().setGameScore(pointsWonByPlayer2);
-		assertThat(tennisGame.displayCurrentScore()).isEqualTo(expectedScore);
+		assertThat(tennisGame.displayGameScore()).isEqualTo(expectedScore);
 
 	}
 
@@ -43,7 +43,7 @@ public class TennisGameUnitTest {
 		tennisGame.getPlayer2().setGameScore(3);
 		tennisGame.getPlayer1().winPoint();
 		String expectedScore = "Player1:DEUCE\nPlayer2:DEUCE";
-		assertThat(tennisGame.displayCurrentScore()).isEqualTo(expectedScore);
+		assertThat(tennisGame.displayGameScore()).isEqualTo(expectedScore);
 	}
 
 	@Test
@@ -52,7 +52,7 @@ public class TennisGameUnitTest {
 		tennisGame.getPlayer2().setGameScore(3);
 		tennisGame.getPlayer1().winPoint();
 		String expectedScore = "Player1:ADV\nPlayer2:40";
-		assertThat(tennisGame.displayCurrentScore()).isEqualTo(expectedScore);
+		assertThat(tennisGame.displayGameScore()).isEqualTo(expectedScore);
 	}
 
 	@Test
@@ -61,7 +61,7 @@ public class TennisGameUnitTest {
 		tennisGame.getPlayer2().setGameScore(3);
 		tennisGame.getPlayer1().winPoint();
 		String expectedScore = "Player1:0\nPlayer2:0\nPlayer1 win the game";
-		assertThat(tennisGame.displayCurrentScore()).isEqualTo(expectedScore);
+		assertThat(tennisGame.displayGameScore()).isEqualTo(expectedScore);
 	}
 
 	@Test
@@ -70,7 +70,7 @@ public class TennisGameUnitTest {
 		tennisGame.getPlayer2().setGameScore(3);
 		tennisGame.getPlayer1().losePoint();
 		String expectedScore = "Player1:DEUCE\nPlayer2:DEUCE";
-		assertThat(tennisGame.displayCurrentScore()).isEqualTo(expectedScore);
+		assertThat(tennisGame.displayGameScore()).isEqualTo(expectedScore);
 	}
 
 	@Test
@@ -78,7 +78,7 @@ public class TennisGameUnitTest {
 		tennisGame.getPlayer1().setGameScore(4);
 		String expectedScore = "Player1:0\nPlayer2:0\nPlayer1 win the game";
 		String expectedSetScore = "Player1:1\nPlayer2:0";
-		assertThat(tennisGame.displayCurrentScore()).isEqualTo(expectedScore);
+		assertThat(tennisGame.displayGameScore()).isEqualTo(expectedScore);
 		assertThat(tennisGame.displaySetScore()).isEqualTo(expectedSetScore);
 	}
 

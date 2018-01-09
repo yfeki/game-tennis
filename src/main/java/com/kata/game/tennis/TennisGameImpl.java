@@ -32,7 +32,7 @@ public class TennisGameImpl implements ITennisGame{
      * @return display current game score
      */
 	@Override
-	public String displayCurrentScore() {
+	public String displayGameScore() {
 
 		if (this.hasGameWinner()) {
 			Player playerGameWinner = this.getPlayerGameWinner();

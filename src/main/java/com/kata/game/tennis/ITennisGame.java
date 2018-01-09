@@ -22,7 +22,7 @@ public interface ITennisGame {
 	List<String> ALL_SCORES = Arrays.asList("0", "15",
 			"30", "40");
 
-	String displayCurrentScore();
+	String displayGameScore();
 
 	String displaySetScore();
 
