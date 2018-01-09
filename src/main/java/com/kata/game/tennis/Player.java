@@ -3,7 +3,7 @@ package com.kata.game.tennis;
 public class Player {
 
 	private String name;
-	private int score;
+	private int gameScore;
 	private int setScore;
 	
 	public Player(String name) {
@@ -16,15 +16,15 @@ public class Player {
 
 	public void winPoint() {
 	
-		this.score++;
+		this.gameScore++;
 	}
 
-	public int getScore() {
-		return this.score;
+	public int getGameScore() {
+		return this.gameScore;
 	}
 
 	public void losePoint() {
-		this.score--;
+		this.gameScore--;
 		
 	}
 
@@ -32,8 +32,8 @@ public class Player {
 		this.setScore++;
 	}
 
-	public void setScore(int score) {
-		this.score =score;
+	public void setGameScore(int score) {
+		this.gameScore =score;
 		
 	}
 

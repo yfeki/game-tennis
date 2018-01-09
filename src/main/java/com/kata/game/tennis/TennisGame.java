@@ -42,8 +42,8 @@ public class TennisGame implements ITennisGame{
 			playerGameWinner.winSet();
 			initScore();
 			StringBuilder score = new StringBuilder(this.displayScore(
-					ALL_SCORES.get(this.player1.getScore()),
-					ALL_SCORES.get(this.player2.getScore())));
+					ALL_SCORES.get(this.player1.getGameScore()),
+					ALL_SCORES.get(this.player2.getGameScore())));
 			score.append(LIGNE_SEP);
 			score.append(playerGameWinner.getName());
 			score.append(WIN_THE_GAME);
@@ -55,15 +55,15 @@ public class TennisGame implements ITennisGame{
 		}
 
 		else if (this.hasAdvantageAgainstPlayer1()) {
-			return this.displayScore(ALL_SCORES.get(this.player1.getScore()),
+			return this.displayScore(ALL_SCORES.get(this.player1.getGameScore()),
 					ADV);
 		} else if (hasAdvantageAgainstPlayer2()) {
 			return this.displayScore(ADV,
-					ALL_SCORES.get(this.player2.getScore()));
+					ALL_SCORES.get(this.player2.getGameScore()));
 		}
 
-		return this.displayScore(ALL_SCORES.get(this.player1.getScore()),
-				ALL_SCORES.get(this.player2.getScore()));
+		return this.displayScore(ALL_SCORES.get(this.player1.getGameScore()),
+				ALL_SCORES.get(this.player2.getGameScore()));
 
 	}
 
@@ -78,6 +78,7 @@ public class TennisGame implements ITennisGame{
 			sb.append(playerSetWinner.getName());
 			sb.append(WIN_THE_SET);
 			currentSetScore = sb.toString();
+			this.initSetScore();
 		}
 		return currentSetScore;
 	}
@@ -88,28 +89,28 @@ public class TennisGame implements ITennisGame{
 	}
 
 	private boolean hasAdvantageAgainstPlayer1() {
-		return this.player1.getScore() == 3 && this.player2.getScore() == 4;
+		return this.player1.getGameScore() == 3 && this.player2.getGameScore() == 4;
 	}
 
 	private boolean hasAdvantageAgainstPlayer2() {
-		return this.player1.getScore() == 4 && this.player2.getScore() == 3;
+		return this.player1.getGameScore() == 4 && this.player2.getGameScore() == 3;
 	}
 
 	private boolean isDeuceActivated() {
-		return this.player1.getScore() == 3 && this.player2.getScore() == 3;
+		return this.player1.getGameScore() == 3 && this.player2.getGameScore() == 3;
 	}
 
 	private Player getPlayerGameWinner() {
 		
-		return this.player1.getScore() > this.player2.getScore() ? this.player1 : this.player2;
+		return this.player1.getGameScore() > this.player2.getGameScore() ? this.player1 : this.player2;
 
 	}
 
 	private boolean hasGameWinner() {
-		int scoreDiff = Math.abs(this.player1.getScore()
-				- this.player2.getScore());
+		int scoreDiff = Math.abs(this.player1.getGameScore()
+				- this.player2.getGameScore());
 		return scoreDiff >= 2
-				&& (this.player1.getScore() >= 4 || this.player2.getScore() >= 4);
+				&& (this.player1.getGameScore() >= 4 || this.player2.getGameScore() >= 4);
 	}
 
 	private boolean hasSetWinner(){
@@ -120,8 +121,13 @@ public class TennisGame implements ITennisGame{
 		
 	}
 	private void initScore() {
-		this.player1.setScore(0);
-		this.player2.setScore(0);
+		this.player1.setGameScore(0);
+		this.player2.setGameScore(0);
+	}
+	
+	private void initSetScore(){
+		this.player1.setSetScore(0);
+		this.player2.setSetScore(0);
 	}
 	
 	private String displayScore(String scorePlayer1, String scorePlayer2) {

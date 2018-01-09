@@ -37,8 +37,8 @@ public class TennisGameUnitTest {
 	})
 	public void should_display_current_score_at_any_moment_of_the_game(
 			int pointsWonByPlayer1, int pointsWonByPlayer2, String expectedScore) {
-		tennisGame.getPlayer1().setScore(pointsWonByPlayer1);
-		tennisGame.getPlayer2().setScore(pointsWonByPlayer2);
+		tennisGame.getPlayer1().setGameScore(pointsWonByPlayer1);
+		tennisGame.getPlayer2().setGameScore(pointsWonByPlayer2);
 		assertThat(tennisGame.displayCurrentScore()).isEqualTo(expectedScore);
 
 	}
@@ -46,8 +46,8 @@ public class TennisGameUnitTest {
 	@Test 
 	public void shoud_display_Deuce_when_both_players_reach_forty(){
 	
-		tennisGame.getPlayer1().setScore(2);
-		tennisGame.getPlayer2().setScore(3);
+		tennisGame.getPlayer1().setGameScore(2);
+		tennisGame.getPlayer2().setGameScore(3);
 		tennisGame.getPlayer1().winPoint();
 		String expectedScore="Player1:DEUCE\nPlayer2:DEUCE";
 		assertThat(tennisGame.displayCurrentScore()).isEqualTo(expectedScore);
@@ -55,8 +55,8 @@ public class TennisGameUnitTest {
 	
 	@Test 
 	public void shoud_display_player1_has_advantage_when_score_is_Deuce_and_player1_win_point(){
-		tennisGame.getPlayer1().setScore(3);
-		tennisGame.getPlayer2().setScore(3);
+		tennisGame.getPlayer1().setGameScore(3);
+		tennisGame.getPlayer2().setGameScore(3);
 		tennisGame.getPlayer1().winPoint();
 		String expectedScore="Player1:ADV\nPlayer2:40";
 		assertThat(tennisGame.displayCurrentScore()).isEqualTo(expectedScore);
@@ -64,8 +64,8 @@ public class TennisGameUnitTest {
 	
 	@Test
 	public void should_display_player1_as_winner_when_he_had_advantage_and_win_point(){
-		tennisGame.getPlayer1().setScore(4);
-		tennisGame.getPlayer2().setScore(3);
+		tennisGame.getPlayer1().setGameScore(4);
+		tennisGame.getPlayer2().setGameScore(3);
 		tennisGame.getPlayer1().winPoint();
 		String expectedScore="Player1:0\nPlayer2:0\nPlayer1 win the game";
 		assertThat(tennisGame.displayCurrentScore()).isEqualTo(expectedScore);
@@ -73,8 +73,8 @@ public class TennisGameUnitTest {
 	
 	@Test
 	public void should_display_deuce_when_player1_had_advantage_and_lose_point(){
-		tennisGame.getPlayer1().setScore(4);
-		tennisGame.getPlayer2().setScore(3);
+		tennisGame.getPlayer1().setGameScore(4);
+		tennisGame.getPlayer2().setGameScore(3);
 		tennisGame.getPlayer1().losePoint();
 		String expectedScore="Player1:DEUCE\nPlayer2:DEUCE";
 		assertThat(tennisGame.displayCurrentScore()).isEqualTo(expectedScore);
@@ -83,7 +83,7 @@ public class TennisGameUnitTest {
 	
 	@Test
 	public void should_display_set_score_as_player1_one_player2_zero_when_player1_win_first_game(){
-		tennisGame.getPlayer1().setScore(4);
+		tennisGame.getPlayer1().setGameScore(4);
 		String expectedScore="Player1:0\nPlayer2:0\nPlayer1 win the game";
 		String expectedSetScore ="Player1:1\nPlayer2:0";
 		assertThat(tennisGame.displayCurrentScore()).isEqualTo(expectedScore);
