@@ -1,5 +1,9 @@
 package com.kata.game.tennis;
 
+/**
+ * @author yfeki
+ *
+ */
 public class Player {
 
 	private String name;
@@ -16,7 +20,6 @@ public class Player {
 	}
 
 	public void winPoint() {
-	
 		this.gameScore++;
 	}
 

@@ -12,13 +12,13 @@ import org.junit.runner.RunWith;
 @RunWith(JUnitParamsRunner.class)
 public class TennisGameUnitTest {
 
-	private TennisGame tennisGame;
+	private TennisGameImpl tennisGame;
 
 	@Before
 	public void setUp() {
 		Player player1 = new Player("Player1");
 		Player player2 = new Player("Player2");
-		tennisGame = new TennisGame(player1, player2);
+		tennisGame = new TennisGameImpl(player1, player2);
 
 	}
 
@@ -110,7 +110,9 @@ public class TennisGameUnitTest {
 	}
 
 	@Test
-	public void should_display_tie_break_as_five_for_player1_and_six_for_player2() {
+	public void should_display_tie_break_as_six_for_player1_and_five_for_player2() {
+		tennisGame.getPlayer1().setSetScore(6);
+		tennisGame.getPlayer2().setSetScore(6);
 		tennisGame.getPlayer1().setTieBreakScore(6);
 		tennisGame.getPlayer2().setTieBreakScore(5);
 		String expectedTieBreak = "Player1:6\nPlayer2:5";
