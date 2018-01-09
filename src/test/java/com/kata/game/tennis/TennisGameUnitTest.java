@@ -107,6 +107,37 @@ public class TennisGameUnitTest {
 		assertThat(tennisGame.displaySetScore()).isEqualTo(expectedSetScore);
 	}
 	
+	@Test 
+	public void should_display_tie_break_one_for_player1_when_both_score_set_are_six_and_player1_win_point(){
+		tennisGame.getPlayer1().setSetScore(6);
+		tennisGame.getPlayer2().setSetScore(6);
+		tennisGame.getPlayer1().winTieBreak();
+		String expectedTieBreak= "Player1:1\nPlayer2:0";
+		assertThat(tennisGame.displayTieBreakScore()).isEqualTo(expectedTieBreak);
+	}
+	
+	@Test 
+	public void should_display_tie_break_as_five_for_player1_and_six_for_player2(){
+		tennisGame.getPlayer1().setTieBreakScore(6);
+		tennisGame.getPlayer2().setTieBreakScore(5);
+		String expectedTieBreak= "Player1:6\nPlayer2:5";
+		assertThat(tennisGame.displayTieBreakScore()).isEqualTo(expectedTieBreak);
+	}
+	
+	@Test 
+	public void should_display_set_and_match_winner_as_player1_when_his_tie_break_is_seven(){
+		tennisGame.getPlayer1().setSetScore(6);
+		tennisGame.getPlayer2().setSetScore(6);
+		tennisGame.getPlayer1().setTieBreakScore(6);
+		tennisGame.getPlayer2().setTieBreakScore(2);
+		tennisGame.getPlayer1().winTieBreak();
+		String expectedTieBreak= "Player1:0\nPlayer2:0\nPlayer1 win the Match";
+		assertThat(tennisGame.displayTieBreakScore()).isEqualTo(expectedTieBreak);
+	}
+	
+	
+	
+	
 	
 	
 }

@@ -46,4 +46,14 @@ public class Player {
 		return this.setScore;
 	}
 
+	public void winTieBreak() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void setTieBreakScore(int i) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

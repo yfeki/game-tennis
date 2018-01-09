@@ -142,4 +142,9 @@ public class TennisGame implements ITennisGame{
 		return currentScore.toString();
 	}
 
+	public String displayTieBreakScore() {
+		
+		return null;
+	}
+
 }
