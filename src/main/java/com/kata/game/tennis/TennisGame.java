@@ -2,7 +2,6 @@ package com.kata.game.tennis;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.function.Predicate;
 
 public class TennisGame implements ITennisGame{
 	private static final String ADV = "ADV";
@@ -11,9 +10,11 @@ public class TennisGame implements ITennisGame{
 	private static final String DEUCE = "DEUCE";
 	private static final String SCORE_SEP = ":";
 	private static final String LIGNE_SEP = "\n";
+	private static final Object WIN_THE_SET_AND_THE_MATCH = " win the set and the match";
 
 	public static final List<String> ALL_SCORES = Arrays.asList("0", "15",
 			"30", "40");
+	
 	
 
 	private Player player1;
@@ -82,6 +83,27 @@ public class TennisGame implements ITennisGame{
 		}
 		return currentSetScore;
 	}
+	
+	@Override
+	public String displayTieBreakScore() {
+		if (this.hasMatchWinner()){
+			Player playerMatchWinner = this.getPlayerMatchWinner();
+			playerMatchWinner.winSet();
+			this.initTieBreakScore();
+			StringBuilder score = new StringBuilder(this.displayScore(String.valueOf(this.player1.getTieBreakScore()), String.valueOf(this.player2.getTieBreakScore())));
+			score.append(LIGNE_SEP);
+			score.append(playerMatchWinner.getName());
+			score.append(WIN_THE_SET_AND_THE_MATCH);
+			return score.toString();
+		}
+		
+		return this.displayScore(String.valueOf(this.player1.getTieBreakScore()), String.valueOf(this.player2.getTieBreakScore()));
+	}
+
+	private Player getPlayerMatchWinner() {
+		
+		return this.player1.getTieBreakScore() > this.player2.getTieBreakScore() ? this.player1 :this.player2;
+	}
 
 	private Player getPlayerSetWinner() {
 		
@@ -120,6 +142,13 @@ public class TennisGame implements ITennisGame{
 				&& (this.player1.getSetScore() >= 6 || this.player2.getSetScore() >= 6);
 		
 	}
+	
+	private boolean hasMatchWinner(){
+		int tieBreakScoreDiff= Math.abs(this.player1.getTieBreakScore()
+				- this.player2.getTieBreakScore());
+		return tieBreakScoreDiff >= 2
+				&& (this.player1.getTieBreakScore() >= 7 || this.player2.getTieBreakScore() >= 7);
+	}
 	private void initScore() {
 		this.player1.setGameScore(0);
 		this.player2.setGameScore(0);
@@ -130,6 +159,10 @@ public class TennisGame implements ITennisGame{
 		this.player2.setSetScore(0);
 	}
 	
+	private void initTieBreakScore(){
+		this.player1.setTieBreakScore(0);
+		this.player2.setTieBreakScore(0);
+	}
 	private String displayScore(String scorePlayer1, String scorePlayer2) {
 		StringBuilder currentScore = new StringBuilder();
 		currentScore.append(this.player1.getName());
@@ -142,9 +175,6 @@ public class TennisGame implements ITennisGame{
 		return currentScore.toString();
 	}
 
-	public String displayTieBreakScore() {
-		
-		return null;
-	}
+	
 
 }

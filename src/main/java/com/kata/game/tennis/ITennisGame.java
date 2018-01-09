@@ -6,4 +6,5 @@ public interface ITennisGame {
 
 	String displaySetScore();
 
+	String displayTieBreakScore();
 }

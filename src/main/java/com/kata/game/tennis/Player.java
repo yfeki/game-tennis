@@ -5,6 +5,7 @@ public class Player {
 	private String name;
 	private int gameScore;
 	private int setScore;
+	private int tieBreakScore;
 	
 	public Player(String name) {
 		this.name = name; 
@@ -47,13 +48,16 @@ public class Player {
 	}
 
 	public void winTieBreak() {
-		// TODO Auto-generated method stub
+		this.tieBreakScore++;
 		
 	}
 
-	public void setTieBreakScore(int i) {
-		// TODO Auto-generated method stub
+	public void setTieBreakScore(int tieBreakScore) {
+		this.tieBreakScore = tieBreakScore;
 		
+	}
+	public int getTieBreakScore(){
+		return this.tieBreakScore;
 	}
 
 }
