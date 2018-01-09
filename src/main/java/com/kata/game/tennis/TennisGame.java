@@ -34,12 +34,13 @@ public class TennisGame {
 	public String displayCurrentScore() {
 
 		if (this.hasWinner()) {
+			String gameWinner = this.displayGameWinner();
 			initScore();
 			StringBuilder score = new StringBuilder(this.displayScore(
 					ALL_SCORES.get(this.player1.getScore()),
 					ALL_SCORES.get(this.player2.getScore())));
 			score.append(LIGNE_SEP);
-			score.append(this.displayGameWinner());
+			score.append(gameWinner);
 			score.append(WIN_THE_GAME);
 			return score.toString();
 		}
@@ -55,7 +56,7 @@ public class TennisGame {
 			return this.displayScore(ADV,
 					ALL_SCORES.get(this.player2.getScore()));
 		}
-		
+
 		return this.displayScore(ALL_SCORES.get(this.player1.getScore()),
 				ALL_SCORES.get(this.player2.getScore()));
 
@@ -80,8 +81,9 @@ public class TennisGame {
 	}
 
 	private boolean hasWinner() {
-		return (this.player1.getScore() == 4 && this.player2.getScore() < 3)
-				|| (this.player2.getScore() == 4 && this.player1.getScore() < 3);
+		int scoreDiff = Math.abs(this.player1.getScore()- this.player2.getScore());
+		return scoreDiff >= 2
+				&& (this.player1.getScore() >= 4 || this.player2.getScore() >= 4);
 	}
 
 	private void initScore() {
