@@ -14,7 +14,7 @@ import org.junit.runner.RunWith;
 @RunWith(JUnitParamsRunner.class)
 public class TennisGameUnitTest {
 
-	private TennisGame tennisGame;
+	private TennisGame tennisGame; 
 
 	@Before
 	public void setUp() {
@@ -80,10 +80,13 @@ public class TennisGameUnitTest {
 		assertThat(tennisGame.displayCurrentScore()).isEqualTo(expectedScore);
 	}
 	
+	
 	@Test
 	public void should_display_set_score_as_player1_one_player2_zero_when_player1_win_first_game(){
 		tennisGame.getPlayer1().setScore(4);
+		String expectedScore="Player1:0\nPlayer2:0\nPlayer1 win the game";
 		String expectedSetScore ="Player1:1\nPlayer2:0";
+		assertThat(tennisGame.displayCurrentScore()).isEqualTo(expectedScore);
 		assertThat(tennisGame.displaySetScore()).isEqualTo(expectedSetScore);
 	}
 	

@@ -4,6 +4,7 @@ public class Player {
 
 	private String name;
 	private int score;
+	private int setScore;
 	
 	public Player(String name) {
 		this.name = name; 
@@ -28,7 +29,7 @@ public class Player {
 	}
 
 	public void winSet() {
-		
+		this.setScore++;
 	}
 
 	public void setScore(int score) {
@@ -37,8 +38,12 @@ public class Player {
 	}
 
 	public void setSetScore(int setScore) {
-		// TODO Auto-generated method stub
+		this.setScore= setScore;
 		
+	}
+
+	public int getSetScore() {
+		return this.setScore;
 	}
 
 }
