@@ -2,6 +2,7 @@ package com.kata.game.tennis;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.function.Predicate;
 
 public class TennisGame {
 	private static final String ADV = "ADV";
@@ -101,6 +102,11 @@ public class TennisGame {
 		currentScore.append(SCORE_SEP);
 		currentScore.append(scorePlayer2);
 		return currentScore.toString();
+	}
+
+	public String displaySetScore() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

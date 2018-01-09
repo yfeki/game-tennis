@@ -22,13 +22,22 @@ public class Player {
 		return this.score;
 	}
 
-	public void setScore(int score) {
-		this.score = score;
+	public void losePoint() {
+		this.score--;
 		
 	}
 
-	public void losePoint() {
-		this.score--;
+	public void winSet() {
+		
+	}
+
+	public void setScore(int score) {
+		this.score =score;
+		
+	}
+
+	public void setSetScore(int setScore) {
+		// TODO Auto-generated method stub
 		
 	}
 
