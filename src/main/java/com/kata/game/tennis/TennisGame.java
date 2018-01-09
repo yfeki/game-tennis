@@ -55,7 +55,7 @@ public class TennisGame {
 			return this.displayScore(ADV,
 					ALL_SCORES.get(this.player2.getScore()));
 		}
-
+		
 		return this.displayScore(ALL_SCORES.get(this.player1.getScore()),
 				ALL_SCORES.get(this.player2.getScore()));
 

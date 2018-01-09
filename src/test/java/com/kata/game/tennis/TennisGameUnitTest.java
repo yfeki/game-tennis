@@ -31,8 +31,7 @@ public class TennisGameUnitTest {
 		"2,0,Player1:30\nPlayer2:0",
 		"2,1,Player1:30\nPlayer2:15",
 		"3,1,Player1:40\nPlayer2:15",
-		"3,2,Player1:40\nPlayer2:30",
-		"3,3,Player1:DEUCE\nPlayer2:DEUCE", 
+		"3,2,Player1:40\nPlayer2:30", 
 		"2,4,Player1:0\nPlayer2:0\nPlayer2 win the game",
 		"3,4,Player1:40\nPlayer2:ADV"
 	})
@@ -42,6 +41,33 @@ public class TennisGameUnitTest {
 		addPointsForPlayer(tennisGame.getPlayer2(), pointsWonByPlayer2);
 		assertThat(tennisGame.displayCurrentScore()).isEqualTo(expectedScore);
 
+	}
+	
+	@Test 
+	public void shoud_display_Deuce_when_both_players_reach_forty(){
+		addPointsForPlayer(tennisGame.getPlayer1(), 2);
+		addPointsForPlayer(tennisGame.getPlayer2(), 3);
+		tennisGame.getPlayer1().winPoint();
+		String expectedScore="Player1:DEUCE\nPlayer2:DEUCE";
+		assertThat(tennisGame.displayCurrentScore()).isEqualTo(expectedScore);
+	}
+	
+	@Test 
+	public void shoud_display_player1_has_advantage_when_score_is_Deuce_and_player1_win_point(){
+		addPointsForPlayer(tennisGame.getPlayer1(), 3);
+		addPointsForPlayer(tennisGame.getPlayer2(), 3);
+		tennisGame.getPlayer1().winPoint();
+		String expectedScore="Player1:ADV\nPlayer2:40";
+		assertThat(tennisGame.displayCurrentScore()).isEqualTo(expectedScore);
+	}
+	
+	@Test
+	public void should_display_player1_as_winner_when_he_had_advantage_and_win_point(){
+		addPointsForPlayer(tennisGame.getPlayer1(), 4);
+		addPointsForPlayer(tennisGame.getPlayer2(), 3);
+		tennisGame.getPlayer1().winPoint();
+		String expectedScore="Player1:0\nPlayer2:0\nPlayer1 win the game";
+		assertThat(tennisGame.displayCurrentScore()).isEqualTo(expectedScore);
 	}
 	
 	@Test
